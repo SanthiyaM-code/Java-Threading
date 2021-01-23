@@ -4,8 +4,27 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        Runnable obj1=new Hi();
-        Runnable obj2=new Hello();
+        Runnable obj1=new Runnable() {
+            @Override
+            public void run() {
+                    for (int i=0;i<5;i++)
+                    {
+                        System.out.println("Hi");
+                        try {Thread.sleep(1000); } catch(Exception e){}
+                    }
+                }
+        };
+        Runnable obj2=new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0;i<5;i++)
+                {
+                    System.out.println("Hello");
+                    try {Thread.sleep(1000); } catch(Exception e){}
+                }
+
+            }
+        };
         Thread t1=new Thread(obj1);
         Thread t2=new Thread(obj2);
 
@@ -14,28 +33,5 @@ public class Main {
         try {Thread.sleep(10); } catch(Exception e){}
         t2.start();
 
-    }
-}
-class Hi implements Runnable
-{
-    public void run()
-    {
-        for (int i=0;i<5;i++)
-        {
-            System.out.println("Hi");
-            try {Thread.sleep(1000); } catch(Exception e){}
-        }
-    }
-}
-
-class Hello extends Thread
-{
-    public void run()
-    {
-        for (int i=0;i<5;i++)
-        {
-            System.out.println("Hello");
-            try {Thread.sleep(1000); } catch(Exception e){}
-        }
     }
 }
